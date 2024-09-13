@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Left and right sides flex settings */
+  .left-side, .right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Align the content at the bottom for the left side */
+  .left-side {
+    border-right: 1px solid #ccc;
+    background-color: seashell;
+  }
+  
+  /* Align the content at the top for the right side */
+  .right-side {
+    background-color: white;
+  }
+  
+  /* Center content in both sections */
+  .content-wrapper {
+    text-align: center;
+  }
+  
+  .left-side h1 {
+    margin-bottom: 0px; /* Adjust spacing as needed */
+  }
+  
+  .left-side h5 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  
+  /* Social buttons styling */
+  .social-links {
+    margin-top: 10px;
+  }
+  
+  .social-buttons {
+    padding-top: 3%;
+    margin: 0 10px;
+    font-size: 24px;
+    color: #000;
+    text-decoration: none;
+  }
+  
+    .social-buttons:hover {
+      color: #0356af; /* Hover color change */
+    }
+  
+  /* Download button styling */
+  .download-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff !important;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+    .download-button:hover {
+      background-color: #2e2e2e;
+    }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .left-side, .right-side {
+      align-items: center;
+      padding: 0;
+    }
+  
+    .right-side {
+      justify-content: flex-start;
+      background-color: seashell;
+    }
+  
+    .left-side {
+        border-right: none;
+        padding-bottom: 8%;
+        justify-content: flex-end;
+        background-color: seashell;
+    }
+  }
+  
