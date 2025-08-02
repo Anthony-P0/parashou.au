@@ -9,7 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mate:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Parashou.au" />
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CDN -->
     <link rel="canonical" href="https://www.parashou.au"/>
 </head>
@@ -18,8 +23,22 @@
         <h1>Anthony Parashou</h1>
         <h5>Web Developer & Software Engineer</h5>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/anthonyparashou" rel="noopener" target="_blank" class="social-button"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Anthony-P0" rel="noopener" target="_blank" class="social-button"><i class="fab fa-github"></i></a>
+           <a href="https://www.linkedin.com/in/anthonyparashou"
+                class="social-button has-tooltip"
+                title="LinkedIn"
+                data-tooltip="LinkedIn"
+                rel="noopener" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+
+            <a href="https://github.com/Anthony-P0"
+                class="social-button has-tooltip"
+                title="GitHub"
+                data-tooltip="GitHub"
+                rel="noopener" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+
         </div>
     </div>
     <div class="right">
@@ -27,3 +46,23 @@
     </div>
 </body>
 </html>
+<script>
+document.querySelectorAll('.has-tooltip').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    el.dataset.titleBackup = el.title;
+    el.removeAttribute('title');
+  });
+  el.addEventListener('mouseleave', () => {
+    el.title = el.dataset.titleBackup;
+    delete el.dataset.titleBackup;
+  });
+});
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .catch(err => console.error('SW registration failed:', err));
+    });
+  }
+</script>
+

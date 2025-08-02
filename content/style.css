@@ -1,78 +1,138 @@
+/*Base Layout*/
 body {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    margin: 0;
-    /* font-family: Arial, sans-serif; */
-    font-family: "Mate", serif;
-    background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin: 0;
+  font-family: "Mate", serif;
+  background-color: whitesmoke;
 }
-.left, .right {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* Ensure content is stacked vertically */
-    justify-content: center;
-    align-items: center;
+
+.left,
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .left {
-    border-right: 1px solid #ccc; /* Optional: Add a border for better visibility */
-    /* background-color: rgb(223, 223, 223); */
-    background-color: seashell;
+  border-right: 1px solid #ccc;
+  background-color: seashell;
 }
 
 .right {
-    background-color:white;
+  background-color: white;
 }
 
 .left h1 {
-    margin-bottom: 0px; /* Adjust this value to reduce the space */
+  margin-bottom: 0;
 }
+
 .left h5 {
-    margin-top: 5px;
-    margin-bottom: 0px;
+  margin: 5px 0 0 0;
 }
+
 .social-links {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
+/*Buttons*/
 .social-button {
-    margin: 0 10px;
-    font-size: 24px;
-    color: #000;
-    text-decoration: none;
+  margin: 0 10px;
+  font-size: 24px;
+  color: #000;
+  text-decoration: none;
+  position: relative;            /* for tooltip positioning */
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.2s;
 }
+
 .social-button:hover {
-    color: #0356af; /* Change color on hover */
+  color: #0356af;
 }
+
 .download-button {
-    padding: 15px 25px;
-    font-size: 16px;
-    color: #fff;
-    background-color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
+
 .download-button:hover {
-    background-color: #2e2e2e;
+  background-color: #2e2e2e;
 }
+
+/* Responsive*/
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-    .left {
-        justify-content: end;
-        padding-bottom: 10%;
-        border-right: none;
-        background-color: seashell;
-    }
-
-    .right {
-        justify-content: start;
-        background-color: seashell;
-    }
+  body {
+    flex-direction: column;
+  }
+  .left {
+    justify-content: flex-end;
+    padding-bottom: 10%;
+    border-right: none;
+    background-color: seashell;
+  }
+  .right {
+    justify-content: flex-start;
+    background-color: seashell;
+  }
 }
 
+/* Tooltip (below button, with hover delay)*/
+/* Tooltip box */
+.social-button.has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 110%;                     /* below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
 
+  /* base transition and no delay */
+  transition: opacity 0.2s ease-in-out;
+  transition-delay: 0s;
+}
+
+/* Tooltip arrow */
+.social-button.has-tooltip::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  z-index: 100;
+
+  /* base transition and no delay */
+  transition: opacity 0.2s ease-in-out;
+  transition-delay: 0s;
+}
+
+/* Show tooltip after 0.3s hover/focus */
+.social-button.has-tooltip:hover::after,
+.social-button.has-tooltip:focus::after,
+.social-button.has-tooltip:hover::before,
+.social-button.has-tooltip:focus::before {
+  opacity: 1;
+  transition-delay: 0.7s;
+}
